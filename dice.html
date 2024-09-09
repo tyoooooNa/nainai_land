@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>サイコロを振る</title>
+</head>
+<body>
+    <h1>サイコロを振る</h1>
+    <button onclick="rollDice()">サイコロを振る</button>
+    <div id="diceResult" style="font-size: 2em; margin-top: 20px;"></div>
+
+    <script>
+        function rollDice() {
+            const result = Math.floor(Math.random() * 6) + 1; // 1から6までのランダムな数字
+            document.getElementById('diceResult').innerText = '出た目: ' + result;
+        }
+    </script>
+</body>
+</html>
