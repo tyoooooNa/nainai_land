@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>カードを引く</title>
+    <style>
+        .card {
+            width: 100px;
+            height: 150px;
+            margin: 10px;
+            background-color: #f0f0f0;
+            display: inline-block;
+            cursor: pointer;
+            text-align: center;
+            line-height: 150px;
+            font-size: 1.5em;
+        }
+    </style>
+</head>
+<body>
+    <h1>カードを選ぶ</h1>
+    <div id="cardContainer">
+        <!-- カード9枚を表示 -->
+        <div class="card" onclick="revealCard()">1</div>
+        <div class="card" onclick="revealCard()">2</div>
+        <div class="card" onclick="revealCard()">3</div>
+        <div class="card" onclick="revealCard()">4</div>
+        <div class="card" onclick="revealCard()">5</div>
+        <div class="card" onclick="revealCard()">6</div>
+        <div class="card" onclick="revealCard()">7</div>
+        <div class="card" onclick="revealCard()">8</div>
+        <div class="card" onclick="revealCard()">9</div>
+    </div>
+    <div id="cardResult" style="font-size: 2em; margin-top: 20px;"></div>
+
+    <script>
+        function revealCard() {
+            const contents = [
+                '内容1', '内容2', '内容3', '内容4', '内容5',
+                '内容6', '内容7', '内容8', '内容9'
+            ];
+            const randomContent = contents[Math.floor(Math.random() * contents.length)];
+            document.getElementById('cardResult').innerText = '選ばれた内容: ' + randomContent;
+        }
+    </script>
+</body>
+</html>
