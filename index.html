@@ -4,10 +4,70 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TOP画面</title>
+    <style>
+        /* 背景動画 */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .background-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+            z-index: -1; 
+        }
+
+        /* コンテンツのスタイル */
+        .content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            color: white;
+            font-size: 2em;
+            margin-top: 25%;
+        }
+
+        /* ボタン画像のスタイル */
+        .button-image-dice {
+            width: 350px; 
+            height: auto;
+            cursor: pointer;
+            margin-top: 20%;
+        }
+        .button-image-cards {
+            width: 350px; 
+            height: auto;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-    <h1>ゲーム選択</h1>
-    <button onclick="location.href='dice.html'">サイコロを振る</button>
-    <button onclick="location.href='cards.html'">カードを引く</button>
+
+    <!-- 背景動画 -->
+    <video class="background-video" autoplay muted loop>
+        <source src="image/back.mp4" type="video/mp4">
+        お使いのブラウザは動画タグに対応していません。
+    </video>
+
+    <!-- コンテンツ -->
+    <div class="content">
+        <!-- サイコロ -->
+        <img src="image/top_saikoro.png" alt="ロゴ" width="120px"><br />
+		<!-- ロゴ -->
+        <img src="image/logo.png" alt="ロゴ" width="330px">
+		
+
+        <img src="image/dice-button-image.png" alt="サイコロを振る" class="button-image-dice" onclick="location.href='dice.html'" >
+        <img src="image/cards-button-image.png" alt="カードを引く" class="button-image-cards" onclick="location.href='cards.html'">
+
+    </div>
+
 </body>
 </html>
