@@ -3,17 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>サイコロを振る</title>
+    <title>ナイナイランド！-サイコロをふる</title>
+    <style>
+        /* 背景 */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            background-color: #333333;
+        }
+        
+        
+        /* コンテンツのスタイル */
+        .content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            color: white;
+            font-size: 2em;
+        }
+        
+        .message {
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 60px;
+        }
+        
+        /* サイコロ画像のスタイル */
+        #dice {
+            width: 130px;
+            height: auto;
+            margin-top: 70px;
+        }
+        
+        /* ボタン画像のスタイル */
+        .button-image-stop {
+            width: 350px; 
+            height: auto;
+            cursor: pointer;
+            margin-top: 70px;
+            display:inline-block;
+        }
+        
+        .button-image-dice {
+            width: 350px; 
+            height: auto;
+            cursor: pointer;
+            margin-top: 70px;
+            display:none;
+        }
+        
+        .button-image-cards {
+            width: 350px; 
+            height: auto;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        
+        .button-image-back {
+            width: 170px; 
+            height: auto;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+
+    </style>
 </head>
 <body>
-    <h1>サイコロを振る</h1>
-    <button onclick="rollDice()">サイコロを振る</button>
-    <div id="diceResult" style="font-size: 2em; margin-top: 20px;"></div>
+    <!-- コンテンツ -->
+    <div class="content">
+    	<div id="message" class="message">ストップボタンをおしてね</div>
+	    <img id="dice" src="image/dice1.png" alt="サイコロ">
+	    <img id="stop" src="image/stop-button-image.png" alt="ストップ" class="button-image-stop" onclick="stopDice()">
+	    <img id="dice_re" src="image/dice-button-image.png" alt="サイコロをふる" class="button-image-dice" onclick="rollDice()">
+        <img src="image/cards-button-image.png" alt="カードを引く" class="button-image-cards" onclick="location.href='cards.html'">
+        <img src="image/back-button-image.png" alt="戻る" class="button-image-back" onclick="location.href='index.html'">
+    </div>
 
     <script>
+    	// サイコロの画像の配列
+        const diceImages = [
+            "image/dice1.png", 
+            "image/dice2.png", 
+            "image/dice3.png", 
+            "image/dice4.png", 
+            "image/dice5.png", 
+            "image/dice6.png"  
+        ];
+        
+        let rollingInterval;
+        
+        // ページ読み込み時
+		window.onload = function(){
+			let dice = document.getElementById('dice');
+			// 100msごとに画像を切り替える
+			rollingInterval = setInterval(function() {
+	            // 画像をランダムに切り替えて回転を表現
+	            let randomIndex = Math.floor(Math.random() * 6);
+	            dice.src = diceImages[randomIndex];
+	        }, 100); 
+		}
+
+        // ストップ押下
+        function stopDice() {
+        	clearInterval(rollingInterval)
+            let dice = document.getElementById('dice');
+			let finalIndex = Math.floor(Math.random() * 6);
+            dice.src = diceImages[finalIndex];
+            
+            // 表示制御
+            let stop = document.getElementById('stop');
+            let dice_re = document.getElementById('dice_re');
+            stop.style.display = 'none'; 
+            dice_re.style.display = 'inline-block'; 
+            
+            // メッセージを変更
+            document.getElementById('message').textContent = (finalIndex+1)+"！" ;
+        }
+        
+        // ストップ押下
         function rollDice() {
-            const result = Math.floor(Math.random() * 6) + 1; // 1から6までのランダムな数字
-            document.getElementById('diceResult').innerText = '出た目: ' + result;
+        	window.location.reload();
         }
     </script>
 </body>

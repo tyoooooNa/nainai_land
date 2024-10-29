@@ -5,43 +5,94 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>カードを引く</title>
     <style>
+        /* 背景 */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            background-color: #333333;
+        }
+         /* コンテンツのスタイル */
+         .content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            color: white;
+            font-size: 2em;
+        }
+        .message {
+            text-align: center;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 50px;
+            margin-bottom: 20px;
+        }
         .card {
-            width: 100px;
-            height: 150px;
+            width: 90px;
+            height: 120px;
             margin: 10px;
-            background-color: #f0f0f0;
             display: inline-block;
             cursor: pointer;
-            text-align: center;
-            line-height: 150px;
-            font-size: 1.5em;
+        }
+        
+        .button-image-back {
+            width: 170px; 
+            height: auto;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        #cardResult {
+            display: none;
+            font-size: 30px;
+            font-weight: bold;
+            color: white;
+            margin: 150px 40px 20px 20px;
+            margin-bottom: 40px;
         }
     </style>
 </head>
 <body>
-    <h1>カードを選ぶ</h1>
-    <div id="cardContainer">
-        <!-- カード9枚を表示 -->
-        <div class="card" onclick="revealCard()">1</div>
-        <div class="card" onclick="revealCard()">2</div>
-        <div class="card" onclick="revealCard()">3</div>
-        <div class="card" onclick="revealCard()">4</div>
-        <div class="card" onclick="revealCard()">5</div>
-        <div class="card" onclick="revealCard()">6</div>
-        <div class="card" onclick="revealCard()">7</div>
-        <div class="card" onclick="revealCard()">8</div>
-        <div class="card" onclick="revealCard()">9</div>
-    </div>
-    <div id="cardResult" style="font-size: 2em; margin-top: 20px;"></div>
+    <div id="message" class="message">カードを一枚えらんでね</div>
+    <div class="content">
+        <div id="cardContainer">
+            <!-- カード9枚を表示 -->
+            <img src="image/card.png" alt="カード" class="card" onclick="revealCard()">
+            <img src="image/card.png" alt="カード" class="card" onclick="revealCard()">
+            <img src="image/card.png" alt="カード" class="card" onclick="revealCard()">
+            <img src="image/card.png" alt="カード" class="card" onclick="revealCard()">
+            <img src="image/card.png" alt="カード" class="card" onclick="revealCard()">
+            <img src="image/card.png" alt="カード" class="card" onclick="revealCard()">
+            <img src="image/card.png" alt="カード" class="card" onclick="revealCard()">
+            <img src="image/card.png" alt="カード" class="card" onclick="revealCard()">
+            <img src="image/card.png" alt="カード" class="card" onclick="revealCard()">
+        </div>
 
+        <div id="cardResult"></div>
+        <img src="image/back-button-image.png" alt="戻る" class="button-image-back" onclick="location.href='index.html'">
+    </div>
     <script>
         function revealCard() {
             const contents = [
-                '内容1', '内容2', '内容3', '内容4', '内容5',
-                '内容6', '内容7', '内容8', '内容9'
+                'その倍にいる全員で飲む',
+                '面白エピソードを話す！一人も笑わなかったら飲む',
+                '右隣の人の好きなところを5個言う！喜んでくれなかったら飲む',
+                '正面の人に背中に乗られながら腕立て10回！できなかったら飲む',
+                '左隣の人にとりあえず謝る！許してくれなかったら飲む',
+                'ドラえもんの物まねをする！似てなかったら飲む',
+                '全裸になるか飲む',
+                '右となりの人と手をつなぎながら互いの悪口を言い合う',
+                '一番仲良くないなって人に抱きつく'
             ];
             const randomContent = contents[Math.floor(Math.random() * contents.length)];
-            document.getElementById('cardResult').innerText = '選ばれた内容: ' + randomContent;
+            
+            // カード一覧を非表示にし、カードの内容を表示
+            document.getElementById('cardContainer').style.display = 'none';
+            document.getElementById('message').style.display = 'none';
+            document.getElementById('cardResult').innerText = randomContent;
+            document.getElementById('cardResult').style.display = 'block';
+            document.getElementById('backButton').style.display = 'block';
         }
     </script>
 </body>
